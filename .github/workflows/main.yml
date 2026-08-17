@@ -1,0 +1,21 @@
+name: Test ZIP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  zip-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compress two files
+        run: |
+          zip test-package.zip README.md scientific_calculator.py
+
+      - name: Check ZIP
+        run: |
+          ls -lh test-package.zip
+          unzip -l test-package.zip
